@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://dad7bc4523ujr"]
+
+[ext_resource type="Script" uid="uid://bjunis6hlcicy" path="res://player.gd" id="1_0e48y"]
+[ext_resource type="Texture2D" uid="uid://320o6mdyci0a" path="res://Soldier.png" id="2_epypp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hol4"]
+atlas = ExtResource("2_epypp")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6r6c"]
+atlas = ExtResource("2_epypp")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdubu"]
+atlas = ExtResource("2_epypp")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d21ai"]
+atlas = ExtResource("2_epypp")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rj586"]
+atlas = ExtResource("2_epypp")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d7sh"]
+atlas = ExtResource("2_epypp")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b8sev"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0hol4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6r6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdubu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d21ai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rj586")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4d7sh")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_0e48y"]
+script/source = "extends AnimatedSprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
+	
+	
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8sev"]
+size = Vector2(23.852242, 19.033108)
+
+[sub_resource type="Animation" id="Animation_epypp"]
+resource_name = "new_animation"
+step = 2.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0hol4"]
+_data = {
+&"new_animation": SubResource("Animation_epypp")
+}
+
+[node name="Node2D" type="Node2D" unique_id=777952222]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=190485361]
+position = Vector2(22, 26)
+scale = Vector2(3.3767517, 4.4440136)
+script = ExtResource("1_0e48y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1085797402]
+position = Vector2(-2, -3)
+sprite_frames = SubResource("SpriteFrames_b8sev")
+frame_progress = 0.17482086
+script = SubResource("GDScript_0e48y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=720301172]
+position = Vector2(-3.5213718, -5.5148487)
+scale = Vector2(0.6270797, -0.9967001)
+shape = SubResource("RectangleShape2D_b8sev")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=223643681]
+position = Vector2(1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1928786128]
+libraries/ = SubResource("AnimationLibrary_0hol4")
