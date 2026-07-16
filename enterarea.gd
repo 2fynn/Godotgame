@@ -1,5 +1,5 @@
 extends Area2D
-
+#das ist damit die enemies erst laufen wenn der spieler ihre area betritt
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)   #sehr wichtig sonst funktioniert es nicht
 

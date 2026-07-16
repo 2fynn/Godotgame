@@ -1,11 +1,11 @@
 extends CharacterBody2D
-#code für alle enemies
+#code für denn boss
 
 @onready var enemy = $CharacterBody2D2
 @onready var _animated_enemy_sprite = $AnimatedEnemySprite2D
 @onready var player = get_node("../CharacterBody2D")
 var speed = 10
-var max_health: int = 40
+var max_health: int = 50
 var health: int = max_health
 var died: bool = false
 const JUMP_VELOCITY = -100.0
@@ -51,12 +51,12 @@ func activate():
 
 func hit():
 	in_attack = true
-	print("hit")
 	play_animation("hit")
 	await get_tree().create_timer(1).timeout #normaler timer
 	_animated_enemy_sprite.stop()
 	in_attack = false
-
+func boss():
+	pass
 func get_hit():
 	health-=10
 	in_attack = true

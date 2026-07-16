@@ -6,9 +6,10 @@ var is_attacking = false
 const JUMP_VELOCITY = -200.0
 var follow_player :bool
 var is_dead = false
-var max_health: int = 30
+var max_health: int = 50
 var health: int = max_health
-
+var under_attack = false
+var boss_attacked = false
 
 func play_animation(name):
 	_animated_sprite.play(name)
@@ -47,19 +48,32 @@ func get_input():
 			_animated_sprite.flip_h = false
 	if Input.is_action_just_pressed("attack"):
 		attack()
+func bossattacked():
+	boss_attacked=true
 
-
-
+func get_hit():
+	under_attack = true
+	if bossattacked:
+		health-=25
+	else:
+		health-=10
+	play_animation("gets_hit")
+	await get_tree().create_timer(1).timeout #normaler timer
+	_animated_sprite.stop()
+	under_attack = false
+	if health<=0:
+		die()
+		return
 
 func attack():
 	is_attacking = true
 	play_animation("attack")
 	$Attackarea.activate()
 	
-	await get_tree().create_timer(0.5).timeout  # Zeitpunkt, wann die Hitbox aktiv sein soll
+	await get_tree().create_timer(2).timeout  # Zeitpunkt, wann die Hitbox aktiv sein soll
 	$Attackarea.deactivate()
 	
-	await get_tree().create_timer(0.3).timeout  # Rest der Animation abwarten
+	 # Rest der Animation abwarten
 	is_attacking = false
 	
 

@@ -89,6 +89,22 @@ region = Rect2(400, 0, 100, 100)
 atlas = ExtResource("2_epypp")
 region = Rect2(500, 0, 100, 100)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_n63ng"]
+atlas = ExtResource("2_epypp")
+region = Rect2(0, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnn4a"]
+atlas = ExtResource("2_epypp")
+region = Rect2(100, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1aygh"]
+atlas = ExtResource("2_epypp")
+region = Rect2(200, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_td2a2"]
+atlas = ExtResource("2_epypp")
+region = Rect2(300, 500, 100, 100)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_0e48y"]
 atlas = ExtResource("2_epypp")
 region = Rect2(0, 100, 100, 100)
@@ -186,9 +202,21 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n63ng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnn4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1aygh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_td2a2")
+}],
 "loop": 1,
-"name": &"new_animation",
+"name": &"gets_hit",
 "speed": 5.0
 }, {
 "frames": [{
@@ -1809,34 +1837,9 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1512074377]
-offset_left = 100.0
-offset_top = -62.0
-offset_right = 140.0
-offset_bottom = -22.0
-scale = Vector2(1, 0.3600006)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel" unique_id=1377965631]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.00546272, 0.015672887)
-
-[node name="Herz" type="TextureRect" parent="CanvasLayer/Panel/HBoxContainer" unique_id=1953525632]
-layout_mode = 2
-texture = ExtResource("4_0hol4")
-
-[node name="Herz2" type="TextureRect" parent="CanvasLayer/Panel/HBoxContainer" unique_id=1839214309]
-layout_mode = 2
-texture = ExtResource("4_0hol4")
-
-[node name="Herz3" type="TextureRect" parent="CanvasLayer/Panel/HBoxContainer" unique_id=1804686427]
-layout_mode = 2
-texture = ExtResource("4_0hol4")
-
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=190485361]
 z_index = 2
-position = Vector2(-54.000004, 28.999998)
+position = Vector2(-62, 44.000004)
 scale = Vector2(1.0632176, 0.83575726)
 script = ExtResource("1_0e48y")
 
@@ -1845,6 +1848,31 @@ position = Vector2(-2.8216195, -3.5895565)
 scale = Vector2(0.94054115, 1.1965196)
 zoom = Vector2(3, 3)
 
+[node name="Panel" type="Panel" parent="CharacterBody2D/Camera2D" unique_id=1512074377]
+offset_left = -279.99997
+offset_top = -11.000004
+offset_right = -239.99997
+offset_bottom = 28.999996
+scale = Vector2(1, 0.3600006)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CharacterBody2D/Camera2D/Panel" unique_id=1377965631]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.00546272, 0.015672887)
+
+[node name="Herz" type="TextureRect" parent="CharacterBody2D/Camera2D/Panel/HBoxContainer" unique_id=1953525632]
+layout_mode = 2
+texture = ExtResource("4_0hol4")
+
+[node name="Herz2" type="TextureRect" parent="CharacterBody2D/Camera2D/Panel/HBoxContainer" unique_id=1839214309]
+layout_mode = 2
+texture = ExtResource("4_0hol4")
+
+[node name="Herz3" type="TextureRect" parent="CharacterBody2D/Camera2D/Panel/HBoxContainer" unique_id=1804686427]
+layout_mode = 2
+texture = ExtResource("4_0hol4")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D" unique_id=247080905]
 libraries/ = SubResource("AnimationLibrary_0hol4")
 
@@ -1852,7 +1880,8 @@ libraries/ = SubResource("AnimationLibrary_0hol4")
 position = Vector2(-2.8216248, -3.58956)
 scale = Vector2(0.81321573, 0.8545537)
 sprite_frames = SubResource("SpriteFrames_b8sev")
-animation = &"new_animation"
+animation = &"gets_hit"
+frame_progress = 0.66063565
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=720301172]
 position = Vector2(-3.2918892, -4.187807)
@@ -1860,14 +1889,13 @@ scale = Vector2(0.6270797, -0.99669987)
 shape = SubResource("RectangleShape2D_b8sev")
 
 [node name="Attackarea" type="Area2D" parent="CharacterBody2D" unique_id=714949450]
-position = Vector2(8.464874, 2.28218e-06)
-scale = Vector2(2.5685353, 1.6297543)
-collision_layer = 4
-collision_mask = 8
+position = Vector2(5.6433067, -2.3930416)
+scale = Vector2(0.36577156, 1.0543572)
+collision_mask = 3
 script = ExtResource("4_hqns4")
 
 [node name="Schaden" type="CollisionShape2D" parent="CharacterBody2D/Attackarea" unique_id=507753938]
-position = Vector2(7.994606, -2.393036)
+position = Vector2(-5.2452087e-06, 2.3841858e-07)
 rotation = -3.1415925
 scale = Vector2(1.5334898, 0.6225676)
 shape = SubResource("RectangleShape2D_xnpvu")
@@ -1889,12 +1917,12 @@ scale = Vector2(0.3385937, 0.43074778)
 sprite_frames = SubResource("SpriteFrames_yiodt")
 animation = &"hit"
 
-[node name="Area2D" type="Area2D" parent="CharacterBody2D2" unique_id=1625532694]
+[node name="headhitbox" type="Area2D" parent="CharacterBody2D2" unique_id=1625532694]
 position = Vector2(-1.8810766, -3.5895615)
 scale = Vector2(0.40837312, -0.112579785)
 script = ExtResource("10_x0ka3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2/Area2D" unique_id=1778310008]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2/headhitbox" unique_id=1778310008]
 position = Vector2(0, 10.628195)
 shape = SubResource("RectangleShape2D_jn074")
 
@@ -1935,12 +1963,12 @@ scale = Vector2(0.3385937, 0.43074778)
 sprite_frames = SubResource("SpriteFrames_yiodt")
 animation = &"hit"
 
-[node name="Area2D" type="Area2D" parent="CharacterBody2D3" unique_id=1427927526]
+[node name="headhitbox" type="Area2D" parent="CharacterBody2D3" unique_id=1427927526]
 position = Vector2(-1.8810766, -3.5895615)
 scale = Vector2(0.40837312, -0.112579785)
 script = ExtResource("10_x0ka3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D3/Area2D" unique_id=1967722054]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D3/headhitbox" unique_id=1967722054]
 position = Vector2(0, 10.628195)
 shape = SubResource("RectangleShape2D_jn074")
 
@@ -2048,9 +2076,9 @@ offset_bottom = -8.0
 
 [connection signal="animation_finished" from="CharacterBody2D/AnimatedSprite2D" to="CharacterBody2D" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="CharacterBody2D/Attackarea" to="CanvasLayer" method="_on_attackarea_body_entered"]
-[connection signal="body_entered" from="CharacterBody2D2/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="CharacterBody2D2/headhitbox" to="CharacterBody2D" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="CharacterBody2D2/enter" to="CharacterBody2D" method="_on_enter_body_entered"]
-[connection signal="body_entered" from="CharacterBody2D3/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="CharacterBody2D3/headhitbox" to="CharacterBody2D" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="CharacterBody2D3/enter" to="CharacterBody2D" method="_on_enter_body_entered"]
 [connection signal="body_entered" from="Boss/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Boss/enter" to="CharacterBody2D" method="_on_enter_body_entered"]
