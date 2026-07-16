@@ -1,7 +1,15 @@
 extends Area2D
 
-
-@export var damage: int = 10
-
 func _ready() -> void:
-	add_to_group("player_hitbox")
+	body_entered.connect(_on_body_entered)
+	monitoring = false  # am Anfang deaktiviert
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.has_method("get_hit"):
+		body.get_hit()
+
+func activate() -> void:
+	monitoring = true
+
+func deactivate() -> void:
+	monitoring = false

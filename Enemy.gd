@@ -57,6 +57,13 @@ func hit():
 	_animated_enemy_sprite.stop()
 	in_attack = false
 
+func get_hit():
+	health-=10
+	if health<=0:
+		death()
+func take_damage():
+	pass
+
 func death():
 	if died:
 		return

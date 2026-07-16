@@ -6,6 +6,8 @@ var is_attacking = false
 const JUMP_VELOCITY = -200.0
 var follow_player :bool
 var is_dead = false
+var max_health: int = 30
+var health: int = max_health
 
 
 func play_animation(name):
@@ -45,10 +47,20 @@ func get_input():
 			_animated_sprite.flip_h = false
 	if Input.is_action_just_pressed("attack"):
 		attack()
-	
+
+
+
+
 func attack():
 	is_attacking = true
 	play_animation("attack")
+	$Attackarea.activate()
+	
+	await get_tree().create_timer(0.5).timeout  # Zeitpunkt, wann die Hitbox aktiv sein soll
+	$Attackarea.deactivate()
+	
+	await get_tree().create_timer(0.3).timeout  # Rest der Animation abwarten
+	is_attacking = false
 	
 
 func _physics_process(delta: float) -> void:
@@ -56,7 +68,8 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-	
+	if Input.is_action_just_pressed("Kill"):
+		die()
 	if Input.is_action_just_pressed("attack"):
 		attack()
 		
